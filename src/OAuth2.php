@@ -134,6 +134,7 @@ abstract class OAuth2 extends OAuth
             $queryParams = $incomingRequest->getQueryParams();
             $bodyParams = $incomingRequest->getParsedBody();
             $incomingState = $queryParams['state'] ?? $bodyParams['state'] ?? null;
+            //@TODO refactor condition
             if ($incomingState !== null || empty($authState) || strcmp($incomingState, $authState) !== 0) {
                 throw new InvalidArgumentException('Invalid auth state parameter.');
             }
